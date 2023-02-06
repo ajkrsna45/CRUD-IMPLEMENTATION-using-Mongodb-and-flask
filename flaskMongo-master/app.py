@@ -14,7 +14,7 @@ def retrieveAll():
     holder = list()
     currentCollection = mongo.db.favInfo
     for i in currentCollection.find():
-        holder.append({'name':i['name'], 'genre' : i['favGenre'], 'game' : i['favGame']})
+        holder.append({'name':i['name'], 'paasword' : i['favPassword'], 'role' : i['favRole']})
     return jsonify(holder)
 
 @app.route('/<name>', methods = ['GET'])
@@ -22,16 +22,16 @@ def retrieveAll():
 def retrieveFromName(name):
     currentCollection = mongo.db.favInfo
     data = currentCollection.find_one({"name" : name})
-    return jsonify({'name' : data['name'], 'genre' : data['favGenre'], 'game' : data['favGame']})
+    return jsonify({'name' : data['name'], 'password' : data['favPassword'], 'role' : data['favRole']})
 
 @app.route('/postData', methods = ['POST'])
 def postData():
     currentCollection = mongo.db.favInfo
     name = request.json['name']
-    genre = request.json['genre']
-    game = request.json['game']
-    currentCollection.insert({'name' : name, 'favGenre' : genre, 'favGame' : game})
-    return jsonify({'name' : name, 'genre' : genre, 'game' : game})
+    genre = request.json['password']
+    game = request.json['role']
+    currentCollection.insert({'name' : name, 'favPassword' : password, 'favRole' : role})
+    return jsonify({'name' : name, 'password' : password, 'role' : role})
 
 @app.route('/deleteData/<name>', methods = ['DELETE'])
 def deleteData(name):
