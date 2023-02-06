@@ -8,7 +8,7 @@ function retrieveName (e) {
     fetch(`http://localhost:5000/${name}`)
     .then((res)=> res.json())
     .then((data)=> {
-        document.getElementById('output').innerHTML = `<li class="list-group-item">Name : ${data.name} Genre : ${data.genre} Game : ${data.game}</li>`
+        document.getElementById('output').innerHTML = `<li class="list-group-item">Name : ${data.name} Password : ${data.password} Role : ${data.role}</li>`
     })
 }
 
@@ -18,8 +18,8 @@ function postData (e) {
     e.preventDefault()
 
     let name = document.getElementById('postName').value
-    let genre = document.getElementById('postGenre').value
-    let game = document.getElementById('postGame').value
+    let password = document.getElementById('postPassword').value
+    let role = document.getElementById('postRole').value
 
     fetch('http://localhost:5000/postData', {
         method : 'POST',
@@ -28,8 +28,8 @@ function postData (e) {
         },
         body : JSON.stringify({
             'name' : name,
-            'genre' : genre,
-            'game' : game
+            'password' : password,
+            'role' : role
         })
     })
     .then((response) => response.json())
